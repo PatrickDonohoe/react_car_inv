@@ -18,7 +18,7 @@ const AuthChecker = ({ children }: Props) => {
 
     useEffect(() => {
         if (!isLoading && isAuthenticated) {
-            navigate('dashboard');
+            navigate('/dashboard');
         }
     }, [isLoading, isAuthenticated, navigate]);
 

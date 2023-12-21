@@ -6,7 +6,8 @@ import { useDispatch, useStore } from "react-redux";
 import { chooseProd_Date, chooseMake, chooseModel, chooseColor } from "../redux/slices/RootSlice";
 
 interface CarRegFormProps {
-	id?: string[]
+	id?: string[];
+	onClose: () => void;
 }
 
 const CarRegForm = ( props:CarRegFormProps ) => {
@@ -21,6 +22,8 @@ const CarRegForm = ( props:CarRegFormProps ) => {
 		if (props.id && props.id.length > 0) {
 			server_calls.update(props.id[0], data)
 			console.log(`Updated: ${ data.prod_date } ${ props.id }`)
+			setTimeout(() => {window.location.reload()}, 500)
+			event.target.reset()
 		} else {
 			dispatch(chooseProd_Date(data.prod_date));
 			dispatch(chooseMake(data.make));
@@ -28,35 +31,39 @@ const CarRegForm = ( props:CarRegFormProps ) => {
 			dispatch(chooseColor(data.color));
 
 			server_calls.create(store.getState())
+			setTimeout(() => {window.location.reload()}, 500);
+			event.target.reset()
+
+			props.onClose();
 		}
 	}
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-				<div>
-					<label htmlFor="prod_date">Date of Production</label>
-					<Input {...register('prod_date')} name="prod_date" placeholder="Date of Production" />
-				</div>
-				<div>
-					<label htmlFor="make">Make</label>
-					<Input {...register('make')} name='make' placeholder="Make" />
-				</div>
-				<div>
-					<label htmlFor="model">Model</label>
-					<Input {...register('model')} name='model' placeholder='Model' />
-				</div>
-				<div>
-					<label htmlFor="color">Color</label>
-					<Input {...register('color')} name='color' placeholder='Color' />
-				</div>
-				<div className="flex p-1">
-					<button className="flex justify-start m-3 bg-slate-300 p-2 rounded hover:bg-slate-800 text-white"
-					>
-						Submit
-					</button>
-				</div>
-			</form>
+        <form onSubmit={handleSubmit(onSubmit)}>
+			<div>
+				<label htmlFor="prod_date">Date of Production</label>
+				<Input {...register('prod_date')} name="prod_date" placeholder="Date of Production" />
+			</div>
+			<div>
+				<label htmlFor="make">Make</label>
+				<Input {...register('make')} name='make' placeholder="Make" />
+			</div>
+			<div>
+				<label htmlFor="model">Model</label>
+				<Input {...register('model')} name='model' placeholder='Model' />
+			</div>
+			<div>
+				<label htmlFor="color">Color</label>
+				<Input {...register('color')} name='color' placeholder='Color' />
+			</div>
+			<div className="flex p-1">
+				<button className="flex justify-start m-3 bg-slate-300 p-2 rounded hover:bg-slate-800 text-white"
+				>
+					Submit
+				</button>
+			</div>
+		</form>
     </div>
   )
 }

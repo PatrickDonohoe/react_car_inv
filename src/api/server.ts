@@ -19,7 +19,7 @@ export const server_calls = {
         return await response.json()
     },
 
-    create:async (data:any) => {
+    create:async (data:any = {}) => {
         const response = await fetch(`https://car-inventory-aos9.onrender.com/api/cars`,
         {
             method: 'POST',

@@ -59,17 +59,17 @@ function Navbar() {
 						</button>
 						{
 							!isAuthenticated ?
-							<button className="p-3 m-5 bg-teal-400 justify-center">
+							<button className="p-3 m-5 bg-blue-300 justify-center border-red-500 border-2">
 								<div>
-									<Link to='/' onClick={signInOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white'>
+									<Link to='/' onClick={signInOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-black hover:text-white'>
 										Login
 									</Link>
 								</div>
 							</button>
 							:
-							<button className="p-3 m-5 bg-teal-400 justify-center">
+							<button className="p-3 m-5 bg-blue-300 justify-center border-red-500 border-2">
 								<div>
-									<Link to='/' onClick={signOutOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white'>
+									<Link to='/' onClick={signOutOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-black hover:text-white'>
 										Logout
 									</Link>
 								</div>

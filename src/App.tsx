@@ -27,7 +27,7 @@ function App() {
                   element={
                     <route.component />
                   }
-                  />
+                />
               )) }
             </Routes>
           </Provider>
