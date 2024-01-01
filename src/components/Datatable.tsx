@@ -38,22 +38,22 @@ function Datatable() {
             open={open}
             onClose={handleClose}
         />
-        <div className="flex flex-row">
+        <div className="flex flex-row bg-[#0F4C5C]">
             <div>
                 <button
-                    className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white"
+                    className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white"
                     onClick={() => handleOpen()}
                 >
                     Create New Car Record
                 </button>
             </div>
-            <button onClick={handleOpen} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white">Update</button>
-            <button onClick={deleteData} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white">Delete</button>
+            <button onClick={handleOpen} className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">Update</button>
+            <button onClick={deleteData} className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">Delete</button>
         </div>
         <div className= { open ? "hidden" : "container mx-10 my-5 flex flex-col"} 
             style={{ height: 400, width: '100%'}}
         >
-            <h2 className="p-3 bg-slate-300 my-2 rounded">My Cars</h2>
+            <h2 className="p-3 bg-[#5F0F40]  text-[#E36414] my-2 rounded">My Cars</h2>
             <DataGrid 
                 rows={carData} 
                 columns={columns}
