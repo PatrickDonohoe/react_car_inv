@@ -12,6 +12,7 @@ function Navbar() {
 	};
 
 	const signInOnClick = () => {
+		console.log(window.location.origin)
 		loginWithRedirect();
 	};
 
@@ -61,7 +62,7 @@ function Navbar() {
 							!isAuthenticated ?
 							<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 								<div>
-									<Link to='/login' onClick={signInOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'>
+									<Link to='/' onClick={signInOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'>
 										Login
 									</Link>
 								</div>
@@ -69,7 +70,7 @@ function Navbar() {
 							:
 							<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 								<div>
-									<Link to='/logout' onClick={signOutOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'>
+									<Link to='/' onClick={signOutOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'>
 										Logout
 									</Link>
 								</div>
