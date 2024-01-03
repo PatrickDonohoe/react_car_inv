@@ -46,13 +46,6 @@ function Navbar() {
 						</button>
 						<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 							<div>
-								<Link to='/about' onClick={ clicked } className='flex place-items-center mt-4 lg:inline-block 
-									lg:mt-0 text-[#E36414] hover:text-white mr-4'>About
-								</Link>
-							</div>
-						</button>
-						<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-							<div>
 								<Link to='/dashboard' onClick={ clicked } className='flex place-items-center mt-4 lg:inline-block 
 									lg:mt-0 text-[#E36414] hover:text-white mr-4'>Dashboard
 								</Link>

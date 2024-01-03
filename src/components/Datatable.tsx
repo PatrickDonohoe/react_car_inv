@@ -13,7 +13,7 @@ const columns: GridColDef[] = [
 ]
 
 function Datatable() {
-    const [ open, setOpen ] = useState(false);
+    let [ open, setOpen ] = useState(false);
     const { carData, getData } = useGetData();
     const [ selectionModel, setSelectionModel ] = useState<string[]>([])
 
@@ -35,6 +35,7 @@ function Datatable() {
   return (
     <>
         <Modal
+            id={selectionModel}
             open={open}
             onClose={handleClose}
         />
@@ -47,8 +48,10 @@ function Datatable() {
                     Create New Car Record
                 </button>
             </div>
-            <button onClick={handleOpen} className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">Update</button>
-            <button onClick={deleteData} className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">Delete</button>
+            <button onClick={handleOpen} className="p-3 bg-[#5F0F40] rounded m-3 
+                text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">Update</button>
+            <button onClick={deleteData} className="p-3 bg-[#5F0F40] rounded m-3 
+                text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">Delete</button>
         </div>
         <div className= { open ? "hidden" : "container mx-10 my-5 flex flex-col"} 
             style={{ height: 400, width: '100%'}}
