@@ -12,7 +12,6 @@ function Navbar() {
 	};
 
 	const signInOnClick = () => {
-		console.log(window.location.origin)
 		loginWithRedirect();
 	};
 
