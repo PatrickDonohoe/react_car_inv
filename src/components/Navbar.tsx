@@ -30,7 +30,7 @@ function Navbar() {
 				<Link to='/' className='font-semibold text-xl tracking-tight'>Car Inventory</Link>
 			</div>
 			<div className="block">
-				<button onClick={dropDown} className="flex items-center px-3 py-2 text-black hover:text-white hover:border-white">
+				<button onClick={dropDown} className="flex items-center px-3 py-2 text-[#E36414] hover:text-white hover:border-white">
 					<i className="fas fa-bars"></i>
 				</button>
 			</div>
