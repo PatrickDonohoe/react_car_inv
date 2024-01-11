@@ -7,7 +7,6 @@ import { chooseProd_Date, chooseMake, chooseModel, chooseColor } from "../redux/
 
 interface CarRegFormProps {
 	id?: string[];
-	onClose: () => void;
 }
 
 const CarRegForm = ( props:CarRegFormProps ) => {
@@ -32,9 +31,6 @@ const CarRegForm = ( props:CarRegFormProps ) => {
 
 			server_calls.create(store.getState())
 			setTimeout(() => {window.location.reload()}, 500);
-			event.target.reset()
-
-			props.onClose();
 		}
 	}
 
