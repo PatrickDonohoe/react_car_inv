@@ -11,13 +11,13 @@ const AuthChecker = ({ children }: Props) => {
     const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
     useEffect(() => {
-        if (!isLoading && !isAuthenticated) {
+        if (isLoading && !isAuthenticated) {
             loginWithRedirect();
         }
     }, [isLoading, isAuthenticated, loginWithRedirect]);
-
+    // TODO: redirect to dashboard after login
     useEffect(() => {
-        if (!isLoading && isAuthenticated) {
+        if (isLoading && isAuthenticated) {
             navigate('/dashboard');
         }
     }, [isLoading, isAuthenticated, navigate]);

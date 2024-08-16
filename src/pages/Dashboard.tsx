@@ -2,7 +2,7 @@ import Datatable from "../components/Datatable";
 
 function Dashboard() {
   return (
-    <div>
+    <div className="overflow-auto">
       <Datatable />
     </div>
   )

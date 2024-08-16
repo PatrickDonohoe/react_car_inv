@@ -31,6 +31,7 @@ const CarRegForm = ( props:CarRegFormProps ) => {
 
 			server_calls.create(store.getState())
 			setTimeout(() => {window.location.reload()}, 500);
+			event.target.reset()
 		}
 	}
 

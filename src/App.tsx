@@ -22,8 +22,10 @@ function App() {
         <Navbar />
           <Provider store={store}>
             <Routes>
-              { routes.map((route: any, index: any) => (
-                <Route
+              { routes.map((route: any, index: any) => {
+                console.log(route.path)
+                return (
+                  <Route
                   key={index}
                   path={route.path}
                   element={
@@ -36,7 +38,9 @@ function App() {
                     )
                   }
                 />
-              )) }
+                )
+                
+              }) }
             </Routes>
           </Provider>
       </HashRouter>

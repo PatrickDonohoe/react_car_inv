@@ -19,6 +19,25 @@ export const server_calls = {
         return await response.json()
     },
 
+    getOne: async (id:string) => {
+        const response = await fetch(`https://car-inventory-aos9.onrender.com/api/cars/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'x-access-token': `Bearer ${token}`
+                },
+            }
+        );
+
+        if (!response.ok){
+            throw new Error('Failed to fetch specified data from the server')
+        }
+
+        return await response.json()
+    },
+
     create:async (data:any = {}) => {
         const response = await fetch(`https://car-inventory-aos9.onrender.com/api/cars`,
         {

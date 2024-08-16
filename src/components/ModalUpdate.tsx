@@ -1,12 +1,12 @@
-import CarRegForm from "./CarRegForm";
+import CarUpdateForm from "./CarUpdateForm"
 
 type Props = {
-  id?: string[];
+  id: string;
   open: boolean;
   onClose: () => void;
 }
 
-const Modal = (props: Props) => {
+const ModalUpdate = (props: Props) => {
   if (!props.open) return (<></>)
   return (
     <div
@@ -28,7 +28,7 @@ const Modal = (props: Props) => {
             </p>
           </div>
           <div className="flex flex-col items-center text-center mt-3 p-2">
-            <CarRegForm id={props.id} />
+            <CarUpdateForm id={props.id} />
           </div>
         </div>
       </div>
@@ -36,4 +36,4 @@ const Modal = (props: Props) => {
   )
 }
 
-export default Modal
+export default ModalUpdate

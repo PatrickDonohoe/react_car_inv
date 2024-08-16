@@ -5,6 +5,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      phone: '375px',
+      tablet: '500px',
+      sm: '640px',
+      md: '768px',
+      lg: '1124px',
+      xl: '1280px',
+    },
     extend: {
       colors: {
         'burgundy': '5F0F40',
