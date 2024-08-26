@@ -3,7 +3,8 @@ import { forwardRef } from 'react';
 
 interface InputType {
     name: string,
-    placeholder: string
+    placeholder?: string,
+    value?: string
 }
 
 const Input = forwardRef (( props: InputType, ref) => {

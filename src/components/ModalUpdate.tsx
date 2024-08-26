@@ -6,7 +6,16 @@ type Props = {
   onClose: () => void;
 }
 
+// interface CarDataProps {
+// 	id: string;
+// 	prod_date: string;
+// 	make: string;
+// 	model: string;
+// 	color: string;
+// }
+
 const ModalUpdate = (props: Props) => {
+  
   if (!props.open) return (<></>)
   return (
     <div
@@ -28,7 +37,7 @@ const ModalUpdate = (props: Props) => {
             </p>
           </div>
           <div className="flex flex-col items-center text-center mt-3 p-2">
-            <CarUpdateForm id={props.id} />
+            <CarUpdateForm id={props.id} onClose={props.onClose} />
           </div>
         </div>
       </div>
