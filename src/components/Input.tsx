@@ -1,10 +1,11 @@
 import { TextField } from '@mui/material';
-import { forwardRef } from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
 
 interface InputType {
     name: string,
     placeholder?: string,
-    value?: string
+    value?: string,
+    onChange?: ChangeEventHandler
 }
 
 const Input = forwardRef (( props: InputType, ref) => {

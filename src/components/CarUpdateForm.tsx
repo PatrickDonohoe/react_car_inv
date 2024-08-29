@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { server_calls } from "../api/server";
 import Input from "./Input";
@@ -52,6 +52,12 @@ const CarUpdateForm = (props: CarUpdateFormProps) => {
 		getSingleCarData()
 	}, [])
 
+	// TODO: figure out how to save all of the separate fields to singleCarData anytime it changes
+	const handleSingleCarDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
+		setSingleCarData(event.target.value)
+	}
+
+
 	const onSubmit = (data: any, event: any) => {
 		console.log(`ID: ${typeof props.id}`);
 		console.log(props.id)
@@ -72,24 +78,38 @@ const CarUpdateForm = (props: CarUpdateFormProps) => {
 
 
 	// Value prop is not editable. Consider ref.
+	// Save singleCarData as ref. Set up current state of field with initial value of ref for value prop.
 	return (
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<label htmlFor="prod_date">Date of Production</label>
-					<Input {...register('prod_date')} name="prod_date" value={singleCarData.prod_date} />
+					<Input {...register('prod_date')} 
+						name="prod_date" 
+						value={singleCarData.prod_date} 
+					/>
 				</div>
 				<div>
 					<label htmlFor="make">Make</label>
-					<Input {...register('make')} name='make' value={singleCarData.make} />
+					<Input {...register('make')} 
+						name='make' 
+						value={singleCarData.make} 
+					/>
 				</div>
 				<div>
 					<label htmlFor="model">Model</label>
-					<Input {...register('model')} name='model' value={singleCarData.model} />
+					<Input {...register('model')} 
+						name='model' 
+						value={singleCarData.model} 
+					/>
 				</div>
 				<div>
 					<label htmlFor="color">Color</label>
-					<Input {...register('color')} name='color' value={singleCarData.color} />
+					<Input {...register('color')} 
+						name='color' 
+						value={singleCarData.color} 
+						onChange={handleSingleCarDataChange}
+					/>
 				</div>
 				<div className="flex p-1">
 					<button className="flex justify-start m-3 bg-[#5F0F40] text-[#E36414] 

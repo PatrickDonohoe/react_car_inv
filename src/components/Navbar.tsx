@@ -1,11 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+
+const mobileMediaQuery = '(max-width: 750px)'
 
 function Navbar() {
 
 	const [isVisible, setIsVisible] = useState(false);
 	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+	const [isSmall, setIsSmall] = useState(window.matchMedia(mobileMediaQuery).matches);
+
+	useEffect(() => {
+		const query = window.matchMedia(mobileMediaQuery);
+
+		const handleQueryChange: any, (queryEvent: { matches: boolean | ((prevState: boolean) => boolean); }) {
+			setIsSmall(queryEvent.matches);
+		}
+
+		query.addEventListener('change', handleQueryChange);
+
+		return () => {
+			query.removeEventListener('change', handleQueryChange);
+		};
+	}, []);
 
 	const signOutOnClick = () => {
 		logout();
@@ -31,7 +48,7 @@ function Navbar() {
 			</div>
 
 			{/* menu for M: screens */}
-			{/* if >= M: or dropDown == isVisible, use code below, else show hamburger */}
+			{/* if isSmall or isVisible, use code below, else show hamburger using ':' */}
 			<div className="hidden md:flex w-full flex-grow items-center justify-around">
 				{/* <div className="text-sm items-center lg:flex-grow"> */}
 					<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
