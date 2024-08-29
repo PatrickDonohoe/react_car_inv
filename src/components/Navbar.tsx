@@ -13,7 +13,7 @@ function Navbar() {
 	useEffect(() => {
 		const query = window.matchMedia(mobileMediaQuery);
 
-		const handleQueryChange: any, (queryEvent: { matches: boolean | ((prevState: boolean) => boolean); }) {
+		function handleQueryChange(queryEvent: { matches: boolean | ((prevState: boolean) => boolean); }) {
 			setIsSmall(queryEvent.matches);
 		}
 
@@ -47,10 +47,20 @@ function Navbar() {
 				<Link to='/' className='font-semibold text-xl'>Car Inventory</Link>
 			</div>
 
-			{/* menu for M: screens */}
-			{/* if isSmall or isVisible, use code below, else show hamburger using ':' */}
-			<div className="hidden md:flex w-full flex-grow items-center justify-around">
-				{/* <div className="text-sm items-center lg:flex-grow"> */}
+			{/* if isSmall, show hamburger */}
+			{isSmall ?
+				<div className="md:hidden block">
+					<button onClick={dropDown} className="flex items-center px-3 py-2 text-[#E36414] hover:text-white hover:border-white">
+						<i className="fas fa-bars"></i>
+					</button>
+				</div>
+				: <></>
+			}
+
+			{/* if the window is small & dropDown is true OR the window is large, display the navbar, else nothing but the hamburger */}
+			{
+				(isSmall && isVisible)  || !isSmall ?
+				<div className="flex w-full flex-grow items-center justify-around">
 					<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 						<div>
 							<Link to='/' onClick={clicked} className='flex place-items-center lg:inline-block 
@@ -89,64 +99,11 @@ function Navbar() {
 								</button>
 							</>
 					}
-				{/* </div> */}
-			</div>
-			
-			{/* menu for mobile and S: screens */}
-			<div className="md:hidden block">
-				<button onClick={dropDown} className="flex items-center px-3 py-2 text-[#E36414] hover:text-white hover:border-white">
-					<i className="fas fa-bars"></i>
-				</button>
-			</div>
-
-			{/* collapse and expand functionality for hamburger menu */}
-			{isVisible ? (
-				<div className="flex w-full block flex-grow items-center md: hidden">
-					<div className="text-sm lg:flex-grow">
-						<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-							<div>
-								<Link to='/' onClick={clicked} className='flex place-items-center mt-4 lg:inline-block 
-									lg:mt-0 text-[#E36414] hover:text-white'>Home
-								</Link>
-							</div>
-						</button>
-
-						{/* authentication check to determine what nav options are available */}
-						{
-							!isAuthenticated ?
-								<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-									<div>
-										<Link to='/' onClick={signInOnClick}
-											className='flex place-items-center mt-4 lg:inline-block lg:mt-0 
-											text-[#E36414] hover:text-white'
-										>
-											Login
-										</Link>
-									</div>
-								</button>
-								:
-								<>
-									<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-										<div>
-											<Link to='/dashboard' onClick={clicked} className='flex place-items-center mt-4 lg:inline-block 
-											lg:mt-0 text-[#E36414] hover:text-white'>Dashboard
-											</Link>
-										</div>
-									</button>
-									<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-										<div>
-											<Link to='/' onClick={signOutOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'>
-												Logout
-											</Link>
-										</div>
-									</button>
-								</>
-						}
-					</div>
+					: <></>
 				</div>
-			) : (
-				<></>
-			)}
+				: <></>
+			}
+
 		</nav>
 	)
 }
