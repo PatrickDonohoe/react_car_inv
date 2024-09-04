@@ -1,20 +1,16 @@
+import { CarProps } from "../types/carProps";
 import CarUpdateForm from "./CarUpdateForm"
 
 type Props = {
   id: string;
   open: boolean;
   onClose: () => void;
+  carData: CarProps;
 }
 
-// interface CarDataProps {
-// 	id: string;
-// 	prod_date: string;
-// 	make: string;
-// 	model: string;
-// 	color: string;
-// }
 
 const ModalUpdate = (props: Props) => {
+  const selectedCar = props.carData;
   
   if (!props.open) return (<></>)
   return (
@@ -37,7 +33,7 @@ const ModalUpdate = (props: Props) => {
             </p>
           </div>
           <div className="flex flex-col items-center text-center mt-3 p-2">
-            <CarUpdateForm id={props.id} onClose={props.onClose} />
+            <CarUpdateForm id={props.id} onClose={props.onClose} carData={selectedCar}/>
           </div>
         </div>
       </div>

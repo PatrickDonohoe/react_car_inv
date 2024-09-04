@@ -1,7 +1,9 @@
 import { ChangeEventHandler, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+
 import { server_calls } from "../api/server";
 import Input from "./Input";
+import { CarProps } from "../types/carProps";
 
 // import { useDispatch, useStore } from "react-redux";
 // import { chooseProd_Date, chooseMake, chooseModel, chooseColor } from "../redux/slices/RootSlice";
@@ -9,15 +11,16 @@ import Input from "./Input";
 interface CarUpdateFormProps {
 	id: string;
 	onClose: () => void;
+	carData: CarProps;
 }
 
-interface CarDataProps {
-	id: string;
-	prod_date: string;
-	make: string;
-	model: string;
-	color: string;
-}
+// interface CarDataProps {
+// 	id: string;
+// 	prod_date: string;
+// 	make: string;
+// 	model: string;
+// 	color: string;
+// }
 
 // const initialValues: { id: string, prod_date: string, make: string, model: string, color: string } = {
 	// id: 'Loading...',
@@ -33,30 +36,45 @@ const CarUpdateForm = (props: CarUpdateFormProps) => {
 	const { register, handleSubmit } = useForm({})
 	// const [isLoading, setIsLoading] = useState(true)
 
-	const [singleCarData, setSingleCarData] = useState<CarDataProps>({
-		id: 'Loading...',
-		prod_date: 'Loading...',
-		make: 'Loading...',
-		model: 'Loading...',
-		color: 'Loading...'
-	})
+	const [singleCarData, setSingleCarData] = useState<CarProps>(props.carData)
 
-	// console.log(server_calls.getOne)
+	const [carId, setCarId] = useState(singleCarData.id);
+	const [carDate, setCarDate] = useState(singleCarData.prod_date);
+	const [carMake, setCarMake] = useState(singleCarData.make);
+	const [carModel, setCarModel] = useState(singleCarData.model);
+	const [carColor, setCarColor] = useState(singleCarData.color);
 
-	const getSingleCarData = async () => {
-		const data = await server_calls.getOne(props.id);
-		setSingleCarData(data);
-		// setIsLoading(false);
-	}
-	useEffect(() => {
-		getSingleCarData()
-	}, [])
+	// const getSingleCarData = async () => {
+	// 	const data = await server_calls.getOne(props.id);
+	// 	setSingleCarData(data);
+	// }
+	// useEffect(() => {
+	// 	getSingleCarData()
+	// }, [])
 
 	// TODO: figure out how to save all of the separate fields to singleCarData anytime it changes
-	const handleSingleCarDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
-		setSingleCarData(event.target.value)
-	}
+	// const handleSingleCarDataChange: ChangeEventHandler<Element> = (event:any) => {
+	// 	setSingleCarData({
+	// 		id: event.target.value,
+	// 		prod_date: event.target.value,
+	// 		make: event.target.value,
+	// 		model: event.target.value,
+	// 		color: event.target.value
+	// 	})
+	// }
 
+	const handleCarDateChange: ChangeEventHandler<Element> = (event: any) => {
+		setCarDate(event.target.value)
+	}
+	const handleCarMakeChange: ChangeEventHandler<Element> = (event: any) => {
+		setCarMake(event.target.value)
+	}
+	const handleCarModelChange: ChangeEventHandler<Element> = (event: any) => {
+		setCarModel(event.target.value)
+	}
+	const handleCarColorChange: ChangeEventHandler<Element> = (event: any) => {
+		setCarColor(event.target.value)
+	}
 
 	const onSubmit = (data: any, event: any) => {
 		console.log(`ID: ${typeof props.id}`);
@@ -84,31 +102,38 @@ const CarUpdateForm = (props: CarUpdateFormProps) => {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<label htmlFor="prod_date">Date of Production</label>
-					<Input {...register('prod_date')} 
+					<Input 
+						{...register('prod_date')} 
 						name="prod_date" 
-						value={singleCarData.prod_date} 
+						value={carDate} 
+						onChange={(event) => handleCarDateChange(event)}
 					/>
 				</div>
 				<div>
 					<label htmlFor="make">Make</label>
-					<Input {...register('make')} 
+					<Input 
+						{...register('make')} 
 						name='make' 
-						value={singleCarData.make} 
+						value={carMake} 
+						onChange={(event) => handleCarMakeChange(event)}
 					/>
 				</div>
 				<div>
 					<label htmlFor="model">Model</label>
-					<Input {...register('model')} 
+					<Input 
+						{...register('model')} 
 						name='model' 
-						value={singleCarData.model} 
+						value={carModel} 
+						onChange={(event) => handleCarModelChange(event)}
 					/>
 				</div>
 				<div>
 					<label htmlFor="color">Color</label>
-					<Input {...register('color')} 
+					<Input 
+						{...register('color')} 
 						name='color' 
-						value={singleCarData.color} 
-						onChange={handleSingleCarDataChange}
+						value={carColor} 
+						onChange={(event) => handleCarColorChange(event)}
 					/>
 				</div>
 				<div className="flex p-1">

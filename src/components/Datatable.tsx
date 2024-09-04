@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+
 import Modal from "./Modal";
 import ModalUpdate from './ModalUpdate';
 import { server_calls } from '../api/server';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
+import { CarProps } from '../types/carProps';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: "ID", width: 90, hide: true },
@@ -23,15 +25,21 @@ function Datatable() {
 
   const hUpdateOpen = () => setUpdateOpen(true);
   const hUpdateClosed = () => setUpdateOpen(false);
-  const { carData, getData } = useGetData();
-  
-  const [selectionModel, setSelectionModel] = useState<string>('');
 
+  const { carData, getData } = useGetData();
+  const [selectionModel, setSelectionModel] = useState<string>('');
+  const [selectedCar, setSelectedCar] = useState<CarProps>();
+
+  // if table is still loading records, display loading symbol
   const [tableLoading, setTableLoading] = useState(true);
 
+  console.log(carData, 'carData: ');
+  console.log(selectionModel, 'selectionModel: ');
+
+  // if carData changes state, stop loading
   useEffect(() => {
     setTableLoading(false)
-  }, [carData.length > 0])
+  }, [carData])
 
   const deleteData = () => {
     server_calls.delete(selectionModel)
@@ -39,6 +47,18 @@ function Datatable() {
     console.log(`Selection model: ${selectionModel}`)
     setTimeout(() => { window.location.reload() }, 500)
   }
+
+  // if selectionModel changes and the selectionModel matches one of the car id's, 
+  // set selectedCar to that record
+  useEffect(() => {
+    for (let car of carData) {
+      if (car.id === selectionModel) {
+        setSelectedCar(car)
+      }
+    }
+  }, [selectionModel]);
+  
+  
 
   // TODO: add loading text while datatable records are loading
 
@@ -49,11 +69,14 @@ function Datatable() {
         open={newOpen}
         onClose={hNewClosed}
       />
-      <ModalUpdate
-        id={selectionModel}
-        open={updateOpen}
-        onClose={hUpdateClosed}
-      />
+      carData ? (
+        <ModalUpdate
+          id={selectionModel}
+          open={updateOpen}
+          onClose={hUpdateClosed}
+          carData={selectedCar as CarProps}
+        />
+      ) : (<></>)
       <div className='fixed top-24 flex-row w-3/4'>
         <div className="flex flex-row mx-10">
           <div>
