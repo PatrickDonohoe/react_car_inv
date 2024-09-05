@@ -99,7 +99,7 @@ function Navbar() {
 								</button>
 							</>
 					}
-					: <></>
+
 				</div>
 				: <></>
 			}

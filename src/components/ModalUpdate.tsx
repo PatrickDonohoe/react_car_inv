@@ -9,8 +9,10 @@ type Props = {
 }
 
 
+
 const ModalUpdate = (props: Props) => {
   const selectedCar = props.carData;
+  console.log(`car data ${selectedCar}`)
   
   if (!props.open) return (<></>)
   return (
@@ -31,10 +33,15 @@ const ModalUpdate = (props: Props) => {
               onClick={props.onClose}>
               X
             </p>
+            <div className="flex flex-col items-center text-center mt-3 p-2">
+              <CarUpdateForm 
+                id={props.id} 
+                onClose={props.onClose} 
+                carData={selectedCar}
+              />
+            </div>
           </div>
-          <div className="flex flex-col items-center text-center mt-3 p-2">
-            <CarUpdateForm id={props.id} onClose={props.onClose} carData={selectedCar}/>
-          </div>
+          
         </div>
       </div>
     </div>

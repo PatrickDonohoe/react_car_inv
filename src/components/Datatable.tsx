@@ -23,12 +23,14 @@ function Datatable() {
   const hNewOpen = () => setNewOpen(true);
   const hNewClosed = () => setNewOpen(false);
 
-  const hUpdateOpen = () => setUpdateOpen(true);
+  const hUpdateOpen = () => {setUpdateOpen(true)};
   const hUpdateClosed = () => setUpdateOpen(false);
 
   const { carData, getData } = useGetData();
   const [selectionModel, setSelectionModel] = useState<string>('');
-  const [selectedCar, setSelectedCar] = useState<CarProps>();
+  const [selectedCar, setSelectedCar] = useState<CarProps>([]);
+  const [make] = selectedCar
+  console.log(`selected car ${selectedCar}`)
 
   // if table is still loading records, display loading symbol
   const [tableLoading, setTableLoading] = useState(true);
@@ -52,8 +54,12 @@ function Datatable() {
   // set selectedCar to that record
   useEffect(() => {
     for (let car of carData) {
-      if (car.id === selectionModel) {
+      console.log(`car_id ${typeof car.id}`)
+      console.log(`selectionModel ${typeof selectionModel}`)
+      if (car.id === selectionModel[0]) {
+        console.log('inside conditional')
         setSelectedCar(car)
+        console.log(selectedCar)
       }
     }
   }, [selectionModel]);
@@ -74,7 +80,7 @@ function Datatable() {
           id={selectionModel}
           open={updateOpen}
           onClose={hUpdateClosed}
-          carData={selectedCar as CarProps}
+          carData={make}
         />
       ) : (<></>)
       <div className='fixed top-24 flex-row w-3/4'>
