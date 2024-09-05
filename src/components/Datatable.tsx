@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import Modal from "./Modal";
@@ -28,8 +28,13 @@ function Datatable() {
 
   const { carData, getData } = useGetData();
   const [selectionModel, setSelectionModel] = useState<string>('');
-  const [selectedCar, setSelectedCar] = useState<CarProps>([]);
-  const [make] = selectedCar
+  const [selectedCar, setSelectedCar] = useState<CarProps>();
+  const [carId, setCarId] = useState('');
+  const [carDate, setCarDate] = useState('');
+  const [carMake, setCarMake] = useState('');
+  const [carModel, setCarModel] = useState('');
+  const [carColor, setCarColor] = useState('');
+  
   console.log(`selected car ${selectedCar}`)
 
   // if table is still loading records, display loading symbol
@@ -58,10 +63,15 @@ function Datatable() {
       console.log(`selectionModel ${typeof selectionModel}`)
       if (car.id === selectionModel[0]) {
         console.log('inside conditional')
-        setSelectedCar(car)
-        console.log(selectedCar)
-      }
-    }
+        setSelectedCar(car);
+        console.log(car.make);
+        setCarId(car.id);
+        setCarDate(car.prod_date);
+        setCarMake(car.make);
+        setCarModel(car.model);
+        setCarColor(car.color);
+      };
+    };
   }, [selectionModel]);
   
   
@@ -80,7 +90,11 @@ function Datatable() {
           id={selectionModel}
           open={updateOpen}
           onClose={hUpdateClosed}
-          carData={make}
+          carId={carId}
+          carDate={carDate}
+          carMake={carMake}
+          carModel={carModel}
+          carColor={carColor}
         />
       ) : (<></>)
       <div className='fixed top-24 flex-row w-3/4'>

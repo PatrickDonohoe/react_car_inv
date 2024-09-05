@@ -1,9 +1,9 @@
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { server_calls } from "../api/server";
 import Input from "./Input";
-import { CarProps } from "../types/carProps";
+// import { CarProps } from "../types/carProps";
 
 // import { useDispatch, useStore } from "react-redux";
 // import { chooseProd_Date, chooseMake, chooseModel, chooseColor } from "../redux/slices/RootSlice";
@@ -11,7 +11,11 @@ import { CarProps } from "../types/carProps";
 interface CarUpdateFormProps {
 	id: string;
 	onClose: () => void;
-	carData: CarProps;
+  carId: string;
+  carDate: string;
+  carMake: string;
+  carModel: string;
+  carColor: string;
 }
 
 // interface CarDataProps {
@@ -36,13 +40,13 @@ const CarUpdateForm = (props: CarUpdateFormProps) => {
 	const { register, handleSubmit } = useForm({})
 	// const [isLoading, setIsLoading] = useState(true)
 
-	const [singleCarData, setSingleCarData] = useState<CarProps>(props.carData)
+	// const [singleCarData, setSingleCarData] = useState<CarProps>(props.carData)
 
-	const [carId, setCarId] = useState(singleCarData.id);
-	const [carDate, setCarDate] = useState(singleCarData.prod_date);
-	const [carMake, setCarMake] = useState(singleCarData.make);
-	const [carModel, setCarModel] = useState(singleCarData.model);
-	const [carColor, setCarColor] = useState(singleCarData.color);
+	const [carId, setCarId] = useState(props.carId);
+	const [carDate, setCarDate] = useState(props.carDate);
+	const [carMake, setCarMake] = useState(props.carMake);
+	const [carModel, setCarModel] = useState(props.carModel);
+	const [carColor, setCarColor] = useState(props.carColor);
 
 	// const getSingleCarData = async () => {
 	// 	const data = await server_calls.getOne(props.id);

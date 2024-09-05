@@ -1,19 +1,24 @@
-import { CarProps } from "../types/carProps";
+// import { CarProps } from "../types/carProps";
 import CarUpdateForm from "./CarUpdateForm"
 
 type Props = {
   id: string;
   open: boolean;
   onClose: () => void;
-  carData: CarProps;
+  carId: string;
+  carDate: string;
+  carMake: string;
+  carModel: string;
+  carColor: string;
 }
 
 
 
 const ModalUpdate = (props: Props) => {
-  const selectedCar = props.carData;
-  console.log(`car data ${selectedCar}`)
-  
+
+  console.log(`car data ${props.carId} 
+    ${props.carDate} ${props.carMake} ${props.carModel} ${props.carColor}`)
+
   if (!props.open) return (<></>)
   return (
     <div
@@ -30,18 +35,22 @@ const ModalUpdate = (props: Props) => {
         <div className="w-full flex flex-col">
           <div className="flex flex-row space-apart">
             <p className="flex justify-start m-3 bg-[#5F0F40] p-2 rounded text-[#E36414] hover:bg-slate-800 hover:text-white"
-              onClick={props.onClose}>
+              onClick={props.onClose}
+            >
               X
             </p>
-            <div className="flex flex-col items-center text-center mt-3 p-2">
-              <CarUpdateForm 
-                id={props.id} 
-                onClose={props.onClose} 
-                carData={selectedCar}
-              />
-            </div>
           </div>
-          
+          <div className="flex flex-col items-center text-center mt-3 p-2">
+            <CarUpdateForm
+              id={props.id}
+              onClose={props.onClose}
+              carId={props.carId}
+              carDate={props.carDate}
+              carMake={props.carMake}
+              carModel={props.carModel}
+              carColor={props.carColor}
+            />
+          </div>
         </div>
       </div>
     </div>

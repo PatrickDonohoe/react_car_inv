@@ -10,7 +10,7 @@ type Props = {
 
 const Modal = (props: Props) => {
   let [newOpen, setNewOpen] = useState(true);
-  
+
   const hNewClosed = () => setNewOpen(false);
 
   if (!props.open) return (<></>)
@@ -28,23 +28,22 @@ const Modal = (props: Props) => {
       >
         <div className="w-full flex flex-col">
           <div className="flex flex-row space-apart">
-            <button 
-              onClick={hNewClosed} 
+            <button
+              onClick={hNewClosed}
               className="flex justify-start m-3 bg-[#5F0F40] p-2 rounded text-[#E36414] hover:bg-slate-800 hover:text-white"
               type="button"
-              >
+            >
               X
             </button>
-            
           </div>
           <div className="flex flex-col items-center text-center mt-3 p-2">
-              <CarRegForm 
-                id={props.id} 
-                onClose={function (): void {
-                  throw new Error("Function not implemented.");
-                } } 
-              />
-            </div>
+            <CarRegForm
+              id={props.id}
+              onClose={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
