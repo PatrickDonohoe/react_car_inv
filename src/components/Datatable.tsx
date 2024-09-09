@@ -36,7 +36,7 @@ function Datatable() {
   const [carColor, setCarColor] = useState('');
 
   const resetBoxes = () => setSelectionModel('');
-  
+
   console.log(`selected car ${selectedCar}`)
 
   console.log(carData, 'carData: ');
@@ -67,8 +67,8 @@ function Datatable() {
       };
     };
   }, [selectionModel]);
-  
-  
+
+
 
   // TODO: add loading text while datatable records are loading
 
@@ -80,20 +80,22 @@ function Datatable() {
         onClose={hNewClosed}
         refresh={getData}
       />
-      carData ? (
-        <ModalUpdate
-          id={selectionModel}
-          open={updateOpen}
-          onClose={hUpdateClosed}
-          refresh={getData}
-          resetCheckboxes={resetBoxes}
-          carId={carId}
-          carDate={carDate}
-          carMake={carMake}
-          carModel={carModel}
-          carColor={carColor}
-        />
-      ) : (<></>)
+      {carData ?
+        (
+          <ModalUpdate
+            id={selectionModel}
+            open={updateOpen}
+            onClose={hUpdateClosed}
+            refresh={getData}
+            resetCheckboxes={resetBoxes}
+            carId={carId}
+            carDate={carDate}
+            carMake={carMake}
+            carModel={carModel}
+            carColor={carColor}
+          />
+        ) : (<></>)
+      }
       <div className='fixed top-24 flex-row w-3/4'>
         <div className="flex flex-row mx-10">
           <div>

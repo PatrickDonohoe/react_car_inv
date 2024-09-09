@@ -64,7 +64,9 @@ function Navbar() {
 					<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 						<div>
 							<Link to='/' onClick={clicked} className='flex place-items-center lg:inline-block 
-									lg:mt-0 text-[#E36414] hover:text-white'>Home
+									lg:mt-0 text-[#E36414] hover:text-white'
+							>
+								<i className='fa-solid fa-house'></i> Home
 							</Link>
 						</div>
 					</button>
@@ -77,7 +79,7 @@ function Navbar() {
 										className='flex place-items-center lg:inline-block lg:mt-0 
 											text-[#E36414] hover:text-white'
 									>
-										Login
+										<i className='fa-solid fa-right-to-bracket'></i> Login
 									</Link>
 								</div>
 							</button>
@@ -86,14 +88,18 @@ function Navbar() {
 								<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 									<div>
 										<Link to='/dashboard' onClick={clicked} className='flex place-items-center lg:inline-block 
-											lg:mt-0 text-[#E36414] hover:text-white'>Dashboard
+											lg:mt-0 text-[#E36414] hover:text-white'
+											>
+												<i className="fa-solid fa-table-columns"></i> Dashboard
 										</Link>
 									</div>
 								</button>
 								<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
 									<div>
-										<Link to='/' onClick={signOutOnClick} className='flex place-items-center lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'>
-											Logout
+										<Link to='/' onClick={signOutOnClick} className='flex place-items-center 
+											lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'
+										>
+											<i className='fa-solid fa-door-open'></i>	Logout
 										</Link>
 									</div>
 								</button>

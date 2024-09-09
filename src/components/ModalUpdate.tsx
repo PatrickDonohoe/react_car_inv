@@ -36,11 +36,13 @@ const ModalUpdate = (props: ModalUpdateProps) => {
       >
         <div className="w-full flex flex-col">
           <div className="flex flex-row space-apart">
-            <div className="flex justify-start m-3 bg-[#5F0F40] p-2 rounded text-[#E36414] hover:bg-slate-800 hover:text-white"
+            <button 
+              className="flex justify-start m-3 bg-[#5F0F40] p-2 rounded text-[#E36414] hover:bg-slate-800 hover:text-white"
               onClick={props.onClose}
+              type="button"
             >
               X
-            </div>
+            </button>
           </div>
           <div className="flex flex-col items-center text-center mt-3 p-2">
             <CarUpdateForm
