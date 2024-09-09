@@ -11,7 +11,7 @@ const AuthChecker = ({ children }: Props) => {
     const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
     useEffect(() => {
-        if (isLoading && !isAuthenticated) {
+        if (!isLoading && !isAuthenticated) {
             loginWithRedirect();
         }
     }, [isLoading, isAuthenticated, loginWithRedirect]);

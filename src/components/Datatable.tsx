@@ -23,7 +23,7 @@ function Datatable() {
   const hNewOpen = () => setNewOpen(true);
   const hNewClosed = () => setNewOpen(false);
 
-  const hUpdateOpen = () => {setUpdateOpen(true)};
+  const hUpdateOpen = () => setUpdateOpen(true);
   const hUpdateClosed = () => setUpdateOpen(false);
 
   const { carData, getData } = useGetData();
@@ -34,29 +34,23 @@ function Datatable() {
   const [carMake, setCarMake] = useState('');
   const [carModel, setCarModel] = useState('');
   const [carColor, setCarColor] = useState('');
+
+  const resetBoxes = () => setSelectionModel('');
   
   console.log(`selected car ${selectedCar}`)
 
-  // if table is still loading records, display loading symbol
-  const [tableLoading, setTableLoading] = useState(true);
-
   console.log(carData, 'carData: ');
   console.log(selectionModel, 'selectionModel: ');
-
-  // if carData changes state, stop loading
-  useEffect(() => {
-    setTableLoading(false)
-  }, [carData])
 
   const deleteData = () => {
     server_calls.delete(selectionModel)
     getData();
     console.log(`Selection model: ${selectionModel}`)
-    setTimeout(() => { window.location.reload() }, 500)
+    // setTimeout(() => { window.location.reload() }, 500)
   }
 
   // if selectionModel changes and the selectionModel matches one of the car id's, 
-  // set selectedCar to that record
+  // set car attributes to match that record
   useEffect(() => {
     for (let car of carData) {
       console.log(`car_id ${typeof car.id}`)
@@ -84,12 +78,15 @@ function Datatable() {
         id={selectionModel}
         open={newOpen}
         onClose={hNewClosed}
+        refresh={getData}
       />
       carData ? (
         <ModalUpdate
           id={selectionModel}
           open={updateOpen}
           onClose={hUpdateClosed}
+          refresh={getData}
+          resetCheckboxes={resetBoxes}
           carId={carId}
           carDate={carDate}
           carMake={carMake}
@@ -121,7 +118,7 @@ function Datatable() {
         >
           <h2 className="p-3 bg-[#5F0F40]  text-[#E36414] my-2 rounded">My Cars</h2>
           <DataGrid
-            loading={tableLoading}
+            loading={!carData.length}
             rows={carData}
             columns={columns}
             checkboxSelection={true}
