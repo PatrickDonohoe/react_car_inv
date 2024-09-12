@@ -2,7 +2,7 @@ import Datatable from "../components/Datatable";
 
 function Dashboard() {
   return (
-    <div className="overflow-auto">
+    <div className=" bg-gray-100">
       <Datatable />
     </div>
   )

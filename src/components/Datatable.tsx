@@ -66,34 +66,10 @@ function Datatable() {
     };
   }, [selectionModel]);
 
-
-
-  // TODO: add loading text while datatable records are loading
-
   return (
     <>
-      <Modal
-        id={selectionModel}
-        open={newOpen}
-        onClose={hNewClosed}
-        refresh={getData}
-      />
-      {carData ?
-        (
-          <ModalUpdate
-            id={selectionModel}
-            open={updateOpen}
-            onClose={hUpdateClosed}
-            refresh={getData}
-            carId={carId}
-            carDate={carDate}
-            carMake={carMake}
-            carModel={carModel}
-            carColor={carColor}
-          />
-        ) : (<></>)
-      }
-      <div className='fixed top-24 flex-row w-3/4'>
+
+      <div className='static flex-row w-full bg-gray-100 pb-10'>
         <div className="flex flex-row mx-10">
           <button
             className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white"
@@ -110,6 +86,25 @@ function Datatable() {
             Delete
           </button>
         </div>
+        <Modal
+          id={selectionModel}
+          open={newOpen}
+          onClose={hNewClosed}
+        />
+        {carData ?
+          (
+            <ModalUpdate
+              id={selectionModel}
+              open={updateOpen}
+              onClose={hUpdateClosed}
+              carId={carId}
+              carDate={carDate}
+              carMake={carMake}
+              carModel={carModel}
+              carColor={carColor}
+            />
+          ) : (<></>)
+        }
         <div className={newOpen || updateOpen ? "hidden" : "container mx-10 my-5 flex flex-col"}
           style={{ height: 400, width: '100%' }}
         >

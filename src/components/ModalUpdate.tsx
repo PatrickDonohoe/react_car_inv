@@ -5,7 +5,6 @@ type ModalUpdateProps = {
   id: string;
   open: boolean;
   onClose: () => void;
-  refresh: () => Promise<void>;
   carId: string;
   carDate: string;
   carMake: string;
@@ -24,30 +23,31 @@ const ModalUpdate = (props: ModalUpdateProps) => {
   return (
     <div
       onClick={props.onClose}
-      className="fixed w-full h-full flex overflow-auto z-1 justify-center align-middle 
-        bg-gray-300 bg-opacity-25"
+      className="w-full flex z-1 pb-4 justify-center align-middle 
+        bg-gray-100 bg-opacity-25 overflow-y-auto max-h-full"
     >
       <div
-        className="max-w-600px w-2/5 fixed flex z-1 bg-white shadow-xl rounded"
+        className="max-w-600px w-2/5 relative flex overflow-auto z-1 bg-slate-50 
+          shadow-xl rounded"
         onClick={(e) => {
           e.stopPropagation()
         }}
       >
-        <div className="w-full flex flex-col">
-          <div className="flex flex-row space-apart">
+        <div className="w-full h-full flex flex-col border-2 border-black rounded-md">
+          <div className="flex">
             <button 
-              className="flex justify-start m-3 bg-[#5F0F40] p-2 rounded text-[#E36414] hover:bg-slate-800 hover:text-white"
+              className="flex justify-start m-2 bg-[#5F0F40] p-2 rounded text-xs
+                text-[#E36414] hover:bg-slate-800 hover:text-white"
               onClick={props.onClose}
               type="button"
             >
               X
             </button>
           </div>
-          <div className="flex flex-col items-center text-center mt-3 p-2">
+          <div className="flex flex-col items-center text-center p-2">
             <CarUpdateForm
               id={props.id}
               onClose={props.onClose}
-              refresh={props.refresh}
               carId={props.carId}
               carDate={props.carDate}
               carMake={props.carMake}

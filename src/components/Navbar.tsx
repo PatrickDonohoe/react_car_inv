@@ -42,7 +42,7 @@ function Navbar() {
 
 	return (
 		// navbar and title 
-		<nav className="fixed top-0 w-full flex items-center justify-around bg-[#0F4C5C] px-6">
+		<nav className="top-0 w-full flex sticky z-2 items-center justify-around bg-[#0F4C5C] px-6">
 			<div className="flex items-center shrink-0 text-[#E36414]">
 				<Link to='/' className='font-semibold text-xl'>Car Inventory</Link>
 			</div>

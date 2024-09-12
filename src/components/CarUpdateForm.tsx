@@ -7,7 +7,6 @@ import Input from "./Input";
 interface CarUpdateFormProps {
 	id: string;
 	onClose: () => void;
-	refresh: () => Promise<void>;
 	carId: string;
 	carDate: string;
 	carMake: string;
