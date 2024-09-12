@@ -15,23 +15,22 @@ const Modal = (props: Props) => {
   return (
     <div
       onClick={props.onClose}
-      className="fixed w-full h-full flex overflow-auto z-1 justify-center align-middle 
+      className="fixed w-full h-full flex z-1 justify-center align-middle 
         bg-gray-300 bg-opacity-25"
     >
       <div
-        className="max-w-600px w-2/5 fixed flex z-1 mt-20 bg-white shadow-xl rounded"
+        className="max-w-600px w-2/5 fixed flex h-100 overflow-auto z-1 bg-white shadow-xl rounded"
         onClick={(e) => {
           e.stopPropagation()
         }}
       >
-        <div className="w-full flex flex-col">
-          <div
-          className="flex flex-row space-apart">
+        <div className="w-full h-full flex flex-col">
+          <div className="flex">
             <button
-              type="button"
+              // type="button"
               onClick={props.onClose}
-              className="flex justify-start m-3 bg-[#5F0F40] p-2 rounded 
-                  text-[#E36414] hover:bg-slate-800 hover:text-white"
+              className="p-3 bg-[#5F0F40] rounded m-3 
+                text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white"
             >
               X
             </button>

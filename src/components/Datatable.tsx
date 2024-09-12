@@ -35,8 +35,6 @@ function Datatable() {
   const [carModel, setCarModel] = useState('');
   const [carColor, setCarColor] = useState('');
 
-  const resetBoxes = () => setSelectionModel('');
-
   console.log(`selected car ${selectedCar}`)
 
   console.log(carData, 'carData: ');
@@ -46,7 +44,7 @@ function Datatable() {
     server_calls.delete(selectionModel)
     getData();
     console.log(`Selection model: ${selectionModel}`)
-    // setTimeout(() => { window.location.reload() }, 500)
+    setTimeout(() => { window.location.reload() }, 500)
   }
 
   // if selectionModel changes and the selectionModel matches one of the car id's, 
@@ -87,7 +85,6 @@ function Datatable() {
             open={updateOpen}
             onClose={hUpdateClosed}
             refresh={getData}
-            resetCheckboxes={resetBoxes}
             carId={carId}
             carDate={carDate}
             carMake={carMake}
@@ -98,14 +95,12 @@ function Datatable() {
       }
       <div className='fixed top-24 flex-row w-3/4'>
         <div className="flex flex-row mx-10">
-          <div>
-            <button
-              className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white"
-              onClick={hNewOpen}
-            >
-              New
-            </button>
-          </div>
+          <button
+            className="p-3 bg-[#5F0F40] rounded m-3 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white"
+            onClick={hNewOpen}
+          >
+            New
+          </button>
           <button onClick={hUpdateOpen} className="p-3 bg-[#5F0F40] rounded m-3 
                 text-[#E36414] border-red-900 border-2 hover:bg-slate-800 hover:text-white">
             Update

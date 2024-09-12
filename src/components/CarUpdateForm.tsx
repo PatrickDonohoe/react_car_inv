@@ -8,7 +8,6 @@ interface CarUpdateFormProps {
 	id: string;
 	onClose: () => void;
 	refresh: () => Promise<void>;
-	resetCheckboxes: () => void;
 	carId: string;
 	carDate: string;
 	carMake: string;
@@ -47,7 +46,7 @@ const CarUpdateForm = (props: CarUpdateFormProps) => {
 		event.target.reset();
 
 		props.onClose();
-		props.refresh();
+		setTimeout(() => { window.location.reload() }, 500);
 	}
 
 	return (

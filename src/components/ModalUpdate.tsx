@@ -6,7 +6,6 @@ type ModalUpdateProps = {
   open: boolean;
   onClose: () => void;
   refresh: () => Promise<void>;
-  resetCheckboxes: () => void;
   carId: string;
   carDate: string;
   carMake: string;
@@ -29,7 +28,7 @@ const ModalUpdate = (props: ModalUpdateProps) => {
         bg-gray-300 bg-opacity-25"
     >
       <div
-        className="max-w-600px w-2/5 fixed flex z-1 mt-20 bg-white shadow-xl rounded"
+        className="max-w-600px w-2/5 fixed flex z-1 bg-white shadow-xl rounded"
         onClick={(e) => {
           e.stopPropagation()
         }}
@@ -49,7 +48,6 @@ const ModalUpdate = (props: ModalUpdateProps) => {
               id={props.id}
               onClose={props.onClose}
               refresh={props.refresh}
-              resetCheckboxes={props.resetCheckboxes}
               carId={props.carId}
               carDate={props.carDate}
               carMake={props.carMake}
