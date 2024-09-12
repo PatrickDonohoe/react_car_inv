@@ -15,7 +15,7 @@ const Modal = (props: Props) => {
     <div
       onClick={props.onClose}
       className="w-full flex z-1 pb-4 justify-center align-middle 
-        bg-gray-100 bg-opacity-25 overflow-y-auto max-h-full"
+        bg-gray-100 bg-opacity-0 overflow-y-auto max-h-full"
     >
       <div
         className="max-w-600px w-2/5 relative flex overflow-auto z-1 bg-slate-50 
@@ -24,7 +24,7 @@ const Modal = (props: Props) => {
           e.stopPropagation()
         }}
       >
-        <div className="w-full h-full flex flex-col border-2 border-black rounded-md ">
+        <div className="w-full h-full flex flex-col bg-opacity-0 border-2 border-black rounded-md ">
           <div className="flex">
             <button
               // type="button"
