@@ -119,7 +119,6 @@ function Datatable() {
               setSelectionModel(item)
             }}
             autoHeight={true}
-            
           />
         </div>
       </div>
