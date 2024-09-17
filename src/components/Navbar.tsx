@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const mobileMediaQuery = '(max-width: 750px)'
+import ClickButton from './ClickButton';
+
+const mobileMediaQuery = '(max-width: 767px)'
 
 function Navbar() {
 
@@ -43,7 +45,7 @@ function Navbar() {
 
 	return (
 		// navbar and title 
-		<nav className="top-0 w-full flex sticky z-10 items-center justify-around bg-[#0F4C5C] px-6">
+		<nav className="top-0 w-full flex sticky z-10 items-center justify-around bg-[#0F4C5C] px-4">
 			<div className="flex items-center shrink-0 text-[#E36414]">
 				<Link to='/' className='font-semibold text-xl'>Car Inventory</Link>
 			</div>
@@ -54,52 +56,40 @@ function Navbar() {
 			{
 				(isSmall && isVisible) ?
 					(
-						<div className="flex w-full flex-grow items-center justify-around">
-							<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-								<div>
-									<Link to='/' onClick={clicked} className='flex place-items-center lg:inline-block 
-									lg:mt-0 text-[#E36414] hover:text-white'
-									>
-										<i className='fa-solid fa-house'></i>
-									</Link>
-								</div>
-							</button>
-
+						<div className="flex w-full flex-grow justify-center items-center 
+							border-4 mx-2 border-burgundy rounded-md">
+							<ClickButton
+								icon='fa-solid fa-house'
+								route='/'
+								linkText=' Home'
+								onClick={clicked}
+							/>
 							{
-								!isAuthenticated ?
-									<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-										<div>
-											<Link to='/' onClick={signInOnClick}
-												className='flex place-items-center lg:inline-block lg:mt-0 
-											text-[#E36414] hover:text-white'
-											>
-												<i className='fa-solid fa-right-to-bracket'></i>
-											</Link>
-										</div>
-									</button>
-									:
-									<>
-										<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-											<div>
-												<Link to='/dashboard' onClick={clicked} className='flex place-items-center lg:inline-block 
-											lg:mt-0 text-[#E36414] hover:text-white'
-												>
-													<i className="fa-solid fa-table-columns"></i>
-												</Link>
-											</div>
-										</button>
-										<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-											<div>
-												<Link to='/' onClick={signOutOnClick} className='flex place-items-center 
-											lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'
-												>
-													<i className='fa-solid fa-door-open'></i>
-												</Link>
-											</div>
-										</button>
-									</>
+							!isAuthenticated ?
+								<ClickButton
+									icon='fa-solid fa-right-to-bracket'
+									route='/'
+									linkText=' Login'
+									onClick={signInOnClick}
+								/>
+								:
+								(
+									<div>
+										<ClickButton
+											icon='fa-solid fa-table-columns'
+											route='/dashboard'
+											linkText=' Dashboard'
+											onClick={clicked}
+										/>
+										<ClickButton
+											icon='fa-solid fa-door-open'
+											route='/'
+											linkText=' Logout'
+											onClick={signOutOnClick}
+										/>
+									</div>
+								)
 							}
-
 						</div>
 					)
 					: (<></>)
@@ -107,58 +97,47 @@ function Navbar() {
 
 			{/* if isSmall, show hamburger, else show full navbar */}
 			{isSmall ?
-				<div className="md:hidden block">
-					<button onClick={dropDown} className="flex items-center px-3 py-2 text-[#E36414] hover:text-white hover:border-white">
-						<i className="fas fa-bars"></i>
-					</button>
-				</div>
+				(
+					<div className="block">
+						<button onClick={dropDown} className="flex items-center px-3 py-2 text-[#E36414] hover:text-white hover:border-white">
+							<i className="fas fa-bars"></i>
+						</button>
+					</div>
+				)
 				:
 				(
 					<div className="flex w-full flex-grow items-center justify-around">
-						<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-							<div>
-								<Link to='/' onClick={clicked} className='flex place-items-center lg:inline-block 
-											lg:mt-0 text-[#E36414] hover:text-white'
-								>
-									<i className='fa-solid fa-house'></i> Home
-								</Link>
-							</div>
-						</button>
+						<ClickButton
+							icon='fa-solid fa-house'
+							route='/'
+							linkText=' Home'
+							onClick={clicked}
+						/>
 
 						{
 							!isAuthenticated ?
 								(
-									<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-										<div>
-											<Link to='/' onClick={signInOnClick}
-												className='flex place-items-center lg:inline-block lg:mt-0 
-														text-[#E36414] hover:text-white'
-											>
-												<i className='fa-solid fa-right-to-bracket'></i> Login
-											</Link>
-										</div>
-									</button>
+									<ClickButton 
+										icon='fa-solid fa-right-to-bracket'
+										route='/'
+										linkText=' Login'
+										onClick={signInOnClick}
+									/>
 								)
 								:
 								<>
-									<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-										<div>
-											<Link to='/dashboard' onClick={clicked} className='flex place-items-center lg:inline-block 
-													lg:mt-0 text-[#E36414] hover:text-white'
-											>
-												<i className="fa-solid fa-table-columns"></i> Dashboard
-											</Link>
-										</div>
-									</button>
-									<button className="p-3 m-5 bg-[#5F0F40] justify-center border-red-900 border-2">
-										<div>
-											<Link to='/' onClick={signOutOnClick} className='flex place-items-center 
-													lg:inline-block lg:mt-0 text-[#E36414] hover:text-white'
-											>
-												<i className='fa-solid fa-door-open'></i>	Logout
-											</Link>
-										</div>
-									</button>
+									<ClickButton 
+										icon='fa-solid fa-table-columns'
+										route='/dashboard'
+										linkText=' Dashboard'
+										onClick={clicked}
+									/>
+									<ClickButton 
+										icon='fa-solid fa-door-open'
+										route='/'
+										linkText=' Logout'
+										onClick={signOutOnClick}
+									/>
 								</>
 						}
 

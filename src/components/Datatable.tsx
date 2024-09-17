@@ -7,6 +7,7 @@ import { server_calls } from '../api/server';
 import { useGetData } from '../custom-hooks/FetchData';
 import { CarProps } from '../types/carProps';
 
+// TODO: add style to column headers
 const columns: GridColDef[] = [
   { field: 'id', headerName: "ID", width: 90, hide: true },
   { field: 'prod_date', headerName: 'Date of Production', flex: 1 },
@@ -106,7 +107,7 @@ function Datatable() {
           ) : (<></>)
         }
         <div className={newOpen || updateOpen ? "hidden" : "container mx-10 my-5 flex flex-col"}
-          style={{ height: 400, width: '100%' }}
+          style={{  width: '100%' }}
         >
           <h2 className="p-3 bg-[#5F0F40]  text-[#E36414] my-2 rounded">My Cars</h2>
           <DataGrid
@@ -117,11 +118,8 @@ function Datatable() {
             onSelectionModelChange={(item: any) => {
               setSelectionModel(item)
             }}
-            componentsProps={{
-              pagination: {
-                rowsPerPageOptions: [5]
-              }
-            }}
+            autoHeight={true}
+            
           />
         </div>
       </div>

@@ -15,11 +15,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        'burgundy': '5F0F40',
-        'dark_red': '9A031E',
-        'orange_drank': 'FB8B24',
-        'ut_orange': 'E36414',
-        'dark_seafoam': '0F4C5C'
+        'burgundy': '#5F0F40',
+        'dark_red': '#9A031E',
+        'orange_drank': '#FB8B24',
+        'ut_orange': '#E36414',
+        'dark_seafoam': '#0F4C5C'
       },
     },
   },
